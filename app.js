@@ -25,7 +25,7 @@ async function getData(url) {
 let getimageMovie = async function getimageMovie(siteURL, typeMovieUrl, imageId) {
     let typeMovies = await getData(siteURL + typeMovieUrl);
     typeMovies = typeMovies.results;
-    for(let i = 0; i <= 4; i++) {
+    for(let i = 0; i <= 4; i++) {               // penser a remettre i <= 7
         let myImage = document.getElementById(imageId + i);
         myImage.setAttribute("src", typeMovies[i].image_url);
     }
@@ -34,19 +34,11 @@ let getimageMovie = async function getimageMovie(siteURL, typeMovieUrl, imageId)
 const site = "http://127.0.0.1:8000/api/v1/titles/"
 const urlComedy = "?genre=comedy&page_size=7"
 const urlSport = "?genre=sport&page_size=7"
+const urlSciFi = "?genres=Sci-Fi"
 
 
-let comedy = await getimageMovie(site, urlComedy, "js_comedy_")
-let sport = await getimageMovie(site, urlSport, "js_sport_")
+let comedy = getimageMovie(site, urlComedy, "js_comedy_")
+let sport = getimageMovie(site, urlSport, "js_sport_")
+let sciFi = getimageMovie(site, urlSciFi, "js_sci_fi_")
 
-//   const siteURL = "http://127.0.0.1:8000/api/v1/titles/"
-//   const urlComedy = "?genre=comedy&page_size=7"
-//   let comedyMovies = await getData(siteURL + urlComedy);
-//   comedyMovies = comedyMovies.results;
-//   for(let i = 0; i <= 4; i++) {                 // penser a remettre i <= 7
-//     let myImage = document.getElementById("js_comedy_" + i);
-//     // let mySrc = myImage.getAttribute("src");
-//     myImage.setAttribute("src", comedyMovies[i].image_url);
-//     console.log(i)
-//   }
   
