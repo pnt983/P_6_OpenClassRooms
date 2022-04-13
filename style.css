@@ -1,0 +1,93 @@
+header
+{
+    background-color: black;
+    color: rgb(28, 210, 52);
+}
+
+nav ul
+{
+    list-style-type: none;
+}
+
+nav li
+{
+    float: right;
+    width: 25%;
+    text-align: center;
+    color: brown;
+}
+
+nav
+{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.meilleur_film 
+{
+    position: relative;
+    text-align: center;
+    color: rgb(40, 31, 165);
+}
+
+.bouton_play
+{
+    position: absolute;
+    top: 85%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+#leon_p
+{
+    color: black;
+    font-size: 25px;
+    background-color: bisque;
+    opacity: 0.70;
+    position: absolute;
+    text-align: left;
+    top: 60%;
+    left: 25%;
+    width: 50%;
+    margin-left: 19%;
+
+    transform: translate(-50%, -50%);
+}
+
+.titre_meilleur_film
+{
+    color: black;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: bisque;
+    opacity: 0.70;
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+.container_movies
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.container_movies > div
+{
+    text-align: center;
+    line-height: 100px;
+}
+
+.movie
+{
+    align-self: center;
+}
+
+.previous_button, .next_button
+{
+    align-self: center;
+}
+
