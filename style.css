@@ -38,7 +38,7 @@ nav
     transform: translate(-50%, -50%);
 }
 
-#leon_p
+#meilleur_film_p
 {
     color: black;
     font-size: 25px;
@@ -54,7 +54,7 @@ nav
     transform: translate(-50%, -50%);
 }
 
-.titre_meilleur_film
+#titre_meilleur_film
 {
     color: black;
     font-size: 50px;
