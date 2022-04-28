@@ -11,25 +11,33 @@
   <body>
     <header>
       <h1>JustStreamIt</h1>
+      <nav>
+        <ul id="listeHeader">
+          <li class="menu">Categories</li>
+          <li class="menu">Accueil</li>
+        </ul>
+      </nav>
     </header>
 
-    <nav>
-      <ul id="listeHeader">
-        <li class="menu">Categories</li>
-        <li class="menu">Accueil</li>
-      </ul>
-    </nav>
 
     <section class="meilleur_film">
-        <h1 id="titre_meilleur_film"></h1>
-        <p id="meilleur_film_p"></p>
-        <img class="bouton_play" src="images/bouton_play.png" alt="Bouton pour lancer la video">
+      <div id="flex">
+        <div>
+          <h1 id="titre_meilleur_film"></h1>
+        </div>
+        <div>
+          <p id="meilleur_film_p"></p>
+        </div>
+        <div>
+          <img class="bouton_play" src="images/bouton_play.png" alt="Bouton pour lancer la video">
+        </div>
+    </div>
       <div>
         <img id="js_meilleurs_film" src="" alt="" /> 
       </div>
     </section>
     
-    <section id="meilleurs_notes">
+    <!-- <section id="meilleurs_notes">
       <h1>Films les mieux notés</h1>
 
       <div class="container_movies">
@@ -147,8 +155,10 @@
             <img src="images/icon_suivant.png" alt="Icone icon_suivant">
           </div>
       </div>
-    </section>
+    </section> -->
     
+    <section id="root"> </section>
+
     <script type="module" src="app.js" ></script>
     
   </body>
