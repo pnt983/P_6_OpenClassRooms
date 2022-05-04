@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    background-color: rgba(103, 13, 13, 0.342);
 }
 
 * { box-sizing: border-box; }
@@ -27,12 +28,16 @@ nav {
     margin: 0 auto;
 }
 
+#js_meilleurs_film {
+    cursor: pointer; 
+}
+
 .meilleur_film {
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
     align-items: center;
-    background-color: bisque;
+    background-color: rgb(155, 28, 38);
 }
 
 #flex {
@@ -47,33 +52,51 @@ nav {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 3px;
-    background-color: bisque;
-    opacity: 0.75;
+    margin-left: 0.5em;
+    background-color: rgb(155, 28, 38);
+    opacity: 0.80;
 }
 
 #meilleur_film_p {
     overflow: hidden;
     color: black;
     font-size: 25px;
-    background-color: bisque;
-    opacity: 0.75;
+    background-color: rgb(155, 28, 38);
+    opacity: 0.80;
     text-align: left;
+    margin-left: 1em;
+}
+
+.bouton_play {
+    margin-left: 1em;
 }
 
 .category {
     display: flex;
     justify-content: space-around;
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
 
-.next_button {
+.next_button, .prev_button{
     align-self: center;
+    cursor: pointer;
+}
+
+.next_button :hover, .prev_button :hover {
+    transform: scale(1.1);
 }
 
 .title {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    color: rgb(155, 28, 38);
+    text-shadow: 2px 4px 4px rgb(103, 13, 13);
+    letter-spacing: 1.2px;
+    margin-top: 2em;
+    margin-left: 3em;
 }
 
 .modal {
@@ -90,6 +113,7 @@ nav {
 
 .modal_wrapper {
     overflow: auto;
+    position: relative;
     width: 800px;
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
@@ -103,23 +127,25 @@ nav {
     border-radius: 5px;
     font-size: 18px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1em;
+    right: 1em;
     cursor: pointer;
     background-color: #ff365e;
     color: #FFF;
 }
 
 .modal p {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 500;
+    font-family:  Georgia, 'Times New Roman', Times, serif;
 }
 
-.modal h1 {
-    font-size: 28px;
-    font-weight: 900;
+#movie_title {
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .modal img {
     float: left;
+    margin-right: 1em;
 }

@@ -50,12 +50,15 @@ export class MovieImg {
     }
 
     _createDiv() {
+        let titleToRemove = document.getElementById("root_title");
+        titleToRemove.innerText = "";
         let div = document.createElement("div");
         div.classList = "movie";
         let link = document.createElement("a");
         link.setAttribute("href", "#modal1");
         link.setAttribute("class", "js_link");
         let image = document.createElement("img");
+        image.setAttribute("class", "movie_image")
         image.setAttribute("src", this.movieData.image_url);
         image.setAttribute("alt", "Image du film " + this.movieData.title);
         link.appendChild(image);
@@ -72,15 +75,16 @@ export class MovieImg {
 }
 
 export class Carrousel {
-    constructor(moviesData, title, srcButton, movieInCarrousel=4) {
+    constructor(moviesData, title, srcButtonNext, srcButtonPrev, movieInCarrousel=4) {
         this.moviesData = moviesData;
         this.movieInCarrousel = movieInCarrousel;
-        this.srcButton = srcButton
+        this.srcButtonNext = srcButtonNext
+        this.srcButtonPrev = srcButtonPrev
         this.section = this._createSection();
         this.divTitle = this._createDiv("title", title);
         this.movieIndex = 0;
         this.cursor = 0;
-        this._addImageToSection();
+        this._addNextImageToSection();
     }
 
     _createDiv(divClass, title) {
@@ -96,8 +100,10 @@ export class Carrousel {
         return section
     }
 
-    _addImageToSection() {
+    _addNextImageToSection() {
         this.movieIndex = this.cursor;
+        let divButtonPrev = this.addPrevButton("prev_button", this.srcButtonPrev);
+        this.section.appendChild(divButtonPrev);
         for(let i = 1; i <= this.movieInCarrousel; i++) {
             let movieImage = new MovieImg(this.moviesData[this.movieIndex]);
             movieImage.addToParent(this.section);
@@ -110,11 +116,47 @@ export class Carrousel {
         if(this.cursor >= this.moviesData.length) {
             this.cursor = 0;
         }
-        let divButton = this.addButton("next_button", this.srcButton);
-        this.section.appendChild(divButton);
+        let divButtonNext = this.addNextButton("next_button", this.srcButtonNext);
+        this.section.appendChild(divButtonNext);
     }
     
-    addButton(buttonId, srcButton) {
+
+    _addPrevImageToSection() {
+        this.movieIndex = this.cursor;
+        let divButtonPrev = this.addPrevButton("prev_button", this.srcButtonPrev);
+        this.section.appendChild(divButtonPrev);
+        for(let i = 1; i <= this.movieInCarrousel; i++) {
+            let movieImage = new MovieImg(this.moviesData[this.movieIndex]);
+            movieImage.addToParent(this.section);
+            this.movieIndex -= 1;
+            if(this.movieIndex < 0) {
+                this.movieIndex = 6;
+            }
+        }
+        this.cursor += 1;
+        if(this.cursor >= this.moviesData.length) {
+            this.cursor = 0;
+        }
+        let divButtonNext = this.addNextButton("next_button", this.srcButtonNext);
+        this.section.appendChild(divButtonNext);
+    }
+
+    addPrevButton(buttonId, srcButton) {
+        let divButton = document.createElement("div");
+        divButton.className = "prev_button";
+        let button = document.createElement("img");
+        button.setAttribute("id", buttonId);
+        button.setAttribute("src", srcButton);
+        button.setAttribute("alt", "Previous button");
+        button.onclick = () => {
+            this.addPrevMovie()
+        }
+        divButton.appendChild(button);
+        return divButton
+    }
+
+
+    addNextButton(buttonId, srcButton) {
         let divButton = document.createElement("div");
         divButton.className = "next_button";
         let button = document.createElement("img");
@@ -128,10 +170,31 @@ export class Carrousel {
         return divButton
     }
 
+
+    // addButton(buttonId, srcButton) {
+    //     let divButton = document.createElement("div");
+    //     divButton.className = "next_button";
+    //     let button = document.createElement("img");
+    //     button.setAttribute("id", buttonId);
+    //     button.setAttribute("src", srcButton);
+    //     button.setAttribute("alt", "Next button");
+    //     button.onclick = () => {
+    //         this.addNextMovie()
+    //     }
+    //     divButton.appendChild(button);
+    //     return divButton
+    // }
+
     addNextMovie() {
         this.section.innerHTML = "";
-        this._addImageToSection();
+        this._addNextImageToSection();
     }
+
+    addPrevMovie() {
+        this.section.innerHTML = "";
+        this._addPrevImageToSection();
+    }
+
     
     addToParent(parentElement) {
         parentElement.appendChild(this.divTitle);
@@ -149,7 +212,7 @@ function createDataForModal(movieData) {
     movieImage.setAttribute("src", movieData.image_url);
     movieImage.setAttribute("alt", "Image du film" + movieData.title);
     let movieTitle = document.getElementById("movie_title");
-    movieTitle.innerText = "Titre" + movieData.title;
+    movieTitle.innerText = "Titre: " + movieData.title;
     let movieGenre = document.getElementById("movie_genre");
     movieGenre.innerText = "Genre: " + movieData.genres;
     let movieYear = document.getElementById("movie_year");
@@ -163,7 +226,7 @@ function createDataForModal(movieData) {
     let movieActors = document.getElementById("movie_actors");
     movieActors.innerText = "Acteurs : " + movieData.actors;
     let movieDuration = document.getElementById("movie_duration");
-    movieDuration.innerText = "Durée : " + movieData.duration;
+    movieDuration.innerText = "Durée : " + movieData.duration + " min";
     let movieCountry = document.getElementById("movie_country");
     movieCountry.innerText = "Pays d'origine: " + movieData.countries;
     let boxOfficeResult = document.getElementById("movie_box_office");
@@ -173,51 +236,8 @@ function createDataForModal(movieData) {
 }
 
 
-function appendChildAll(parentBalise, arrayForModal) {
-    for(let i = 0; i < arrayForModal.length; i++) {
-    parentBalise.appendChild(arrayForModal[i])
-    }
-}
-
-
-function createDataForModalDynamique(movieData) {
-    let arrayForModal = []
-    let movieImage = document.createElement("img");
-    movieImage.setAttribute("src", movieData.image_url);
-    movieImage.setAttribute("alt", "Image du film" + movieData.title);
-    let movieTitle = document.createElement("p");
-    movieTitle.innerText = "Titre: " + movieData.title;
-    let movieGenre = document.createElement("p");
-    movieGenre.innerText = "Genre: " + movieData.genres;
-    let movieYear = document.createElement("p");
-    movieYear.innerText = "Date de sortie: " + movieData.year;
-    let movieRated = document.createElement("p");
-    movieRated.innerText = "Nombre de votes: " + movieData.votes;
-    let movieScore = document.createElement("p");
-    movieScore.innerText = "Score: " + movieData.imdb_score;
-    let movieDirector = document.createElement("p");
-    movieDirector.innerText = "Realisateur: " + movieData.directors;
-    let movieActors = document.createElement("p");
-    movieActors.innerText = "Acteurs : " + movieData.actors;
-    let movieDuration = document.createElement("p");
-    movieDuration.innerText = "Durée : " + movieData.duration;
-    let movieCountry = document.createElement("p");
-    movieCountry.innerText = "Pays d'origine: " + movieData.countries;
-    let boxOfficeResult = document.createElement("p");
-    boxOfficeResult.innerText = "Résultat au Box Office: " + movieData.worldwide_gross_income;
-    let descriptionMovie = document.createElement("p");
-    descriptionMovie.innerText = "Résumé du film: " + movieData.long_description;
-
-    arrayForModal.push(movieImage, movieTitle, movieGenre, movieYear, movieRated, movieScore,
-        movieDirector, movieActors, movieDuration, movieCountry, boxOfficeResult, descriptionMovie);
-    let parentDiv = document.getElementById("js_movie_datas");
-    appendChildAll(parentDiv, arrayForModal);
-}
-
-
 function addAllDataToModal(movieData) {
     createDataForModal(movieData);
-    // createDataForModalDynamique(movieData)
     
     let windowModal = document.getElementById("modal1");
     windowModal.style.display = null;

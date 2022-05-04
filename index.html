@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css">
@@ -20,9 +20,7 @@
 
     <section class="meilleur_film">
       <div id="flex">
-        <div>
-          <h1 id="titre_meilleur_film"></h1>
-        </div>
+          <h2 id="titre_meilleur_film">Titre</h2>
         <div>
           <p id="meilleur_film_p"></p>
         </div>
@@ -31,7 +29,7 @@
         </div>
     </div>
       <div>
-        <img id="js_meilleurs_film" src="" alt="" /> 
+        <img id="js_meilleurs_film" src="images/interrogation.png" alt="Point d'interrogation"/>
       </div>
     </section>
     
@@ -155,15 +153,18 @@
       </div>
     </section> -->
     
-    <section id="root"> </section>
+    <section id="root">
+      <h2 id="root_title">Titre obligatoire</h2>
+    </section>
 
     <!-- Modal -->
-    <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
-    aria-labelledby="modal_title" style="display: none;">
+    <!-- <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
+    aria-labelledby="modal_title" style="display: none;"> -->
+    <aside id="modal1" class="modal" style="display: none;">
       <div id="js_movie_datas" class="modal_wrapper js_modal_stop">
         <button class="close_modal js_modal_close">X</button>
-        <img id="movie_img" src="" alt="">
-        <h1 id="movie_title"></h1>
+        <img id="movie_img" src="images/interrogation.png" alt="Point d'interrogation">
+        <p id="movie_title"></p>
         <p id="movie_genre"></p>
         <p id="movie_year"></p>
         <p id="movie_rated"></p>
