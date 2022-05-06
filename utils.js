@@ -14,6 +14,7 @@ export async function getData(url) {
     }
   }
 
+  
 export async function getMovieData(data) {
     let movieArray = []
     for (let i = 0; i <= 6; i++) {
@@ -120,7 +121,6 @@ export class Carrousel {
         this.section.appendChild(divButtonNext);
     }
     
-
     _addPrevImageToSection() {
         this.movieIndex = this.cursor;
         let divButtonPrev = this.addPrevButton("prev_button", this.srcButtonPrev);
@@ -155,7 +155,6 @@ export class Carrousel {
         return divButton
     }
 
-
     addNextButton(buttonId, srcButton) {
         let divButton = document.createElement("div");
         divButton.className = "next_button";
@@ -170,21 +169,6 @@ export class Carrousel {
         return divButton
     }
 
-
-    // addButton(buttonId, srcButton) {
-    //     let divButton = document.createElement("div");
-    //     divButton.className = "next_button";
-    //     let button = document.createElement("img");
-    //     button.setAttribute("id", buttonId);
-    //     button.setAttribute("src", srcButton);
-    //     button.setAttribute("alt", "Next button");
-    //     button.onclick = () => {
-    //         this.addNextMovie()
-    //     }
-    //     divButton.appendChild(button);
-    //     return divButton
-    // }
-
     addNextMovie() {
         this.section.innerHTML = "";
         this._addNextImageToSection();
@@ -195,7 +179,6 @@ export class Carrousel {
         this._addPrevImageToSection();
     }
 
-    
     addToParent(parentElement) {
         parentElement.appendChild(this.divTitle);
         parentElement.appendChild(this.section);
@@ -240,7 +223,7 @@ function addAllDataToModal(movieData) {
     createDataForModal(movieData);
     
     let windowModal = document.getElementById("modal1");
-    windowModal.style.display = null;
+    windowModal.style.display = "flex";
     modal = windowModal
     modal.addEventListener("click", closeModal)
     modal.querySelector(".js_modal_close").addEventListener("click", closeModal)

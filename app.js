@@ -44,11 +44,3 @@ sciFiData = sciFiData.results;
 let sciFiMoviesData = await getMovieData(sciFiData);
 let sciFiCarrousel = new Carrousel(sciFiMoviesData, "Science-fiction", srcButtonNext, srcButtonPrev);
 sciFiCarrousel.addToParent(root);
-
-
-// pour modifier le style css de javascript
-
-// let myTest = document.getElementById("meilleur_film_p");
-// let myTest2 = getComputedStyle(myTest).getPropertyValue("font-size");
-// console.log(myTest2)
-// myTest.style.setProperty("font-size", "30px");
