@@ -240,8 +240,6 @@ let closeModal = function(e) {
     if (modal === null) return
     e.preventDefault()
     modal.style.display = "none"
-    modal.setAttribute("aria-hidden", "true")
-    modal.removeAttribute("aria-modal")
     modal.removeEventListener("click", closeModal)
     modal.querySelector(".js_modal_close").removeEventListener("click", closeModal)
     modal.querySelector(".js_modal_stop").removeEventListener("click", stopPropagation)
